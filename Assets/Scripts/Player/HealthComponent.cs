@@ -54,11 +54,9 @@ public class HealthComponent : MonoBehaviour
 
     void OnDeath()
     {
-        Debug.Log("must die");
         if (GetComponent<PhotonView>().IsMine)
         {
             PhotonNetwork.Destroy(gameObject);
-            PhotonNetwork.LoadLevel("Lobby");
         }
     }
 
