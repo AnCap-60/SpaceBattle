@@ -1,19 +1,22 @@
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] GameObject playerPrefab;
 
-    [SerializeField] private float minX, maxX, minY, maxY;
+    [SerializeField] float minX, maxX, minY, maxY;
 
-    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] PlayerInput playerInput;
+
+    [SerializeField] UIDocument ui;
 
     void Awake()
     {
         Vector2 randomPos = new(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity)
-            .GetComponent<PlayerController>().Init(playerInput);
+        var player = PhotonNetwork.Instantiate(playerPrefab.name, randomPos, Quaternion.identity).GetComponent<PlayerController>();
+        player.Init(PhotonNetwork.LocalPlayer.NickName, playerInput, ui.rootVisualElement);
     }
 }

@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: c8a9583c3c0de3c42899fc35d67b4fd3
+guid: bf5d272c7c713c846b4c0fc5c7191d85
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - playerPrefab: {fileID: 483854950001726095, guid: a0977c84b5c0d2c4b80e3a1ab30dd2a7, type: 3}
-  - playerInput: {instanceID: 0}
-  - ui: {instanceID: 0}
+  - coinPrefab: {fileID: 2910442313060567047, guid: 6f4abda3ebcd3074bb929548b34d5e7d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -33,6 +33,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         if (createField.text == string.Empty) return;
 
+        PhotonNetwork.LocalPlayer.NickName = Random.Range(0, 9999).ToString();
         RoomOptions roomOptions = new();
         roomOptions.MaxPlayers = maxPlayers;
         PhotonNetwork.CreateRoom(createField.text, roomOptions);

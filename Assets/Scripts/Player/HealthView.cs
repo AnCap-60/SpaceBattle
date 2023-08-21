@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIComponent : MonoBehaviour
+public class HealthView : MonoBehaviour
 {
     [SerializeField] Slider healthbar;
 
@@ -11,8 +11,8 @@ public class UIComponent : MonoBehaviour
         healthbar.value = healthbar.maxValue = 100;
     }
 
-    public void OnHealthChanged(int health)
+    public void OnHealthChanged(int damage)
     {
-        healthbar.value = health;
+        healthbar.value -= damage;
     }
 }

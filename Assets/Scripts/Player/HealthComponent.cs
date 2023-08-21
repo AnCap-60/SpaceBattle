@@ -14,31 +14,58 @@ public class HealthComponent : MonoBehaviour
 
             if (health <= 0)
             {
-                Destroy(gameObject);
-                PhotonNetwork.LoadLevel("Lobby");
+                health = 0;
+                DeathEvent();
             }
         }
     }
 
     public event Action<int> TakeDamageEvent;
 
-    private void Awake()
+    public event Action DeathEvent;
+
+    PhotonView photonView;
+
+    void Awake()
     {
         TakeDamageEvent += TakeDamage;
+        DeathEvent += OnDeath;
+
+        photonView = GetComponent<PhotonView>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
+        //if (!photonView.IsMine) return;
+
         if (collider != null && collider.CompareTag("Projectile"))
         {
-            var projectile = collider.GetComponent<ProjectileController>();
+            if (!collider.TryGetComponent<ProjectileController>(out var projectile)) return;
 
-            if (projectile.OwnerId == gameObject.GetHashCode())
-                return;
+            if (projectile.OwnerId == photonView.ViewID) return;
 
-            TakeDamageEvent(projectile.Damage);
-            Destroy(projectile);
+            if (photonView.IsMine)
+                photonView.RPC("TakeDamageRPC", RpcTarget.All, projectile.Damage);
+
+            if (projectile.GetComponent<PhotonView>().IsMine && photonView.IsMine)
+                PhotonNetwork.Destroy(projectile.gameObject);
         }
+    }
+
+    void OnDeath()
+    {
+        Debug.Log("must die");
+        if (GetComponent<PhotonView>().IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+            PhotonNetwork.LoadLevel("Lobby");
+        }
+    }
+
+    [PunRPC]
+    void TakeDamageRPC(int damage)
+    {
+        TakeDamageEvent(damage);
     }
 
     private void TakeDamage(int damage)

@@ -43,7 +43,7 @@ public class ShootComponent : MonoBehaviour
     {
         var projectile = PhotonNetwork.Instantiate(projectilePrefab.name, transform.position,
             transform.rotation).GetComponent<ProjectileController>();
-        projectile.Release(projectileDamage, direction.normalized * 5, projectileSpeed, gameObject.GetHashCode());
+        projectile.Release(projectileDamage, direction.normalized * 5, projectileSpeed, GetComponent<PhotonView>().ViewID);
 
         lastShootTime = Time.timeSinceLevelLoadAsDouble;
     }

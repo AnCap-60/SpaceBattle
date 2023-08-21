@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using UnityEngine;
 
@@ -6,11 +7,6 @@ public class ScoreComponent : MonoBehaviour
     public int CoinAmount { get; private set; } = 0;
 
     public event Action<int> MoneyChangedEvent;
-
-    private void Awake()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,6 +21,8 @@ public class ScoreComponent : MonoBehaviour
     void EarnCoin()
     {
         CoinAmount++;
-        MoneyChangedEvent(CoinAmount);
+
+        if(GetComponent<PhotonView>().IsMine)
+            MoneyChangedEvent(CoinAmount);
     }
 }
