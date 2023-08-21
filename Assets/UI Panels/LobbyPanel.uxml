@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Panels/UITKstyles.uss?fileID=7433441132597879392&amp;guid=6f3fada856c0eb14c9de1bfe4ac6e5ec&amp;type=3#UITKstyles" />
+    <ui:VisualElement name="screen" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/Sprites/Backgrounds/menuBackground.jpg?fileID=21300000&amp;guid=8a886a6a9d66ccf4f854d59863aced51&amp;type=3#menuBackground&apos;); -unity-background-scale-mode: scale-and-crop; align-items: center; justify-content: center;">
+        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0.6); border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; min-width: 40%;">
+            <ui:Label text="Online Battle" display-tooltip-when-elided="true" class="big-label text" />
+            <ui:VisualElement name="createContainer" class="input-container">
+                <ui:TextField picking-mode="Ignore" password="false" max-length="16" name="createField" class="input-field input-field-out text" />
+                <ui:Button text="Create" display-tooltip-when-elided="true" name="createB" class="button text" style="-unity-font-style: normal;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="joinContainer" class="input-container">
+                <ui:TextField picking-mode="Ignore" max-length="16" name="joinField" class="input-field input-field-out text" />
+                <ui:Button text="Join" display-tooltip-when-elided="true" name="joinB" class="button text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

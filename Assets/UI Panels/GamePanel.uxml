@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Panels/UITKstyles.uss?fileID=7433441132597879392&amp;guid=6f3fada856c0eb14c9de1bfe4ac6e5ec&amp;type=3#UITKstyles" />
+    <ui:VisualElement name="screen" style="flex-grow: 0; margin-left: 40px; margin-right: 40px; margin-top: 40px; margin-bottom: 40px; height: 10%;">
+        <ui:VisualElement name="coinContainer" style="flex-direction: row; height: 10%; align-items: center; justify-content: flex-start; flex-grow: 1; flex-shrink: 0;">
+            <ui:Label display-tooltip-when-elided="true" name="coinAmount" text="35" style="flex-shrink: 1; font-size: 60px; -unity-font: url(&apos;project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/Skin_Assets/font/zekton%20free.ttf?fileID=12800000&amp;guid=8297a2bf97dbbba468bd2518d003a876&amp;type=3#zekton free&apos;); -unity-font-definition: none; -unity-text-align: middle-left; color: rgb(210, 210, 210);" />
+            <ui:VisualElement name="coinIcon" style="background-image: url(&apos;project://database/Assets/Sprites/Objects/coin.png?fileID=2800000&amp;guid=d585f18da72e8e94fbd3d03fbbe55aba&amp;type=3#coin&apos;); flex-shrink: 1; height: 90px; width: 90px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
