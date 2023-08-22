@@ -553,6 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 743392413}
   - component: {fileID: 743392414}
+  - component: {fileID: 743392415}
   m_Layer: 0
   m_Name: Spawners
   m_TagString: Untagged
@@ -589,6 +590,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9801e8994d3d8d4899af2633eca42a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &743392415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743392412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1084426601
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,8 +32,9 @@ public class WinScreen : MonoBehaviour
 
     IEnumerator ReturnToLobby()
     {
-        yield return new WaitForSecondsRealtime(4f);
+        yield return new WaitForSecondsRealtime(5f);
 
-        PhotonNetwork.LoadLevel("Game");
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.LoadLevel("Loading");
     }
 }

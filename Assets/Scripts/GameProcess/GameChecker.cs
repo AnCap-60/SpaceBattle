@@ -1,8 +1,10 @@
 using Photon.Pun;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using System.Linq;
+using Photon.Realtime;
 
 public class GameChecker : MonoBehaviourPunCallbacks
 {
@@ -10,14 +12,28 @@ public class GameChecker : MonoBehaviourPunCallbacks
 
     public event Action<string, int> WinEvent;
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        StartCoroutine(UpdatePlayersList());
+    }
+
     void Start()
     {
+        StartCoroutine(UpdatePlayersList());
+    }
+
+    IEnumerator UpdatePlayersList()
+    {
+        yield return new WaitForSeconds(1f);
+
         Players = FindObjectsOfType<PlayerController>().ToList();
-        Debug.Log(Players.Count);
+
         foreach (PlayerController player in Players)
         {
             player.GetComponent<HealthComponent>().DeathEvent += CheckForAlive;
         }
+        Debug.Log(Players.Count);
     }
 
     void CheckForAlive()
@@ -31,15 +47,24 @@ public class GameChecker : MonoBehaviourPunCallbacks
             {
                 aliveCount++;
                 potentialWinner = player;
+                Debug.Log("alive: " + potentialWinner);
             }
                 
         }
 
-        if (aliveCount < 2)
+        if (aliveCount == 1)
         {
             Debug.Log("winscreeen");
-            WinEvent(potentialWinner.GetComponent<PhotonView>().ViewID.ToString(),
+            Debug.Log(potentialWinner);
+            GetComponent<PhotonView>().RPC("WinRPC", RpcTarget.All,
+                potentialWinner.GetComponent<PhotonView>().ViewID.ToString(),
                 potentialWinner.GetComponent<ScoreComponent>().CoinAmount);
         }
+    }
+
+    [PunRPC]
+    void WinRPC(string nick, int coins)
+    {
+        WinEvent(nick, coins);
     }
 }
