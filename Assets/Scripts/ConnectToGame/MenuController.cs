@@ -50,6 +50,5 @@ public class MenuController : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("Game");
-        Debug.Log(PhotonNetwork.LocalPlayer.NickName + " joined");
     }
 }

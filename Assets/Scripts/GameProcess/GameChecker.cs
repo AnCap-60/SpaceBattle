@@ -30,10 +30,7 @@ public class GameChecker : MonoBehaviourPunCallbacks
         Players = FindObjectsOfType<PlayerController>().ToList();
 
         foreach (PlayerController player in Players)
-        {
             player.GetComponent<HealthComponent>().DeathEvent += CheckForAlive;
-        }
-        Debug.Log(Players.Count);
     }
 
     void CheckForAlive()
@@ -47,15 +44,12 @@ public class GameChecker : MonoBehaviourPunCallbacks
             {
                 aliveCount++;
                 potentialWinner = player;
-                Debug.Log("alive: " + potentialWinner);
             }
                 
         }
 
         if (aliveCount == 1)
         {
-            Debug.Log("winscreeen");
-            Debug.Log(potentialWinner);
             GetComponent<PhotonView>().RPC("WinRPC", RpcTarget.All,
                 potentialWinner.GetComponent<PhotonView>().ViewID.ToString(),
                 potentialWinner.GetComponent<ScoreComponent>().CoinAmount);
